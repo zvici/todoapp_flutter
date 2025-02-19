@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/ui/utils/enums/onboarding_page_position.dart';
+import 'package:todo_app/utils/enums/onboarding_page_position.dart';
 
 class OnboardingChildPage extends StatelessWidget {
   final OnboardingPagePosition onboardingPagePosition;

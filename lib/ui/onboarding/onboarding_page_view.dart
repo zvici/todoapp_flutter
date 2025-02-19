@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/ui/onboarding/onboarding_child_page.dart';
-import 'package:todo_app/ui/utils/enums/onboarding_page_position.dart';
+import 'package:todo_app/utils/enums/onboarding_page_position.dart';
 
 class OnboardingPageView extends StatefulWidget {
   const OnboardingPageView({super.key});

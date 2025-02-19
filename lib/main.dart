@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/ui/onboarding/onboarding_page_view.dart';
+import 'package:todo_app/ui/main/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +14,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        fontFamily: 'Lato',
       ),
-      home: const OnboardingPageView(),
+      home: const MainPage(),
     );
   }
 }
