@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/ui/main/main_page.dart';
+import 'package:todo_app/ui/splash/splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         fontFamily: 'Lato',
       ),
-      home: const MainPage(),
+      home: const SplashPage(),
     );
   }
 }

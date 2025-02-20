@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/ui/onboarding/onboarding_child_page.dart';
+import 'package:todo_app/ui/welcome/welcome_page.dart';
 import 'package:todo_app/utils/enums/onboarding_page_position.dart';
 
 class OnboardingPageView extends StatefulWidget {
@@ -11,6 +13,25 @@ class OnboardingPageView extends StatefulWidget {
 
 class _OnboardingPageViewState extends State<OnboardingPageView> {
   final PageController _pageController = PageController();
+
+  Future<void> _markOnboardingCompleted() async {
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool("kOnboardingCompleted", true);
+      goToWelcomePage();
+    } catch (e) {
+      print("Error: $e");
+    }
+  }
+
+  void goToWelcomePage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WelcomePage(isFirstTimeInstallApp: true),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +46,9 @@ class _OnboardingPageViewState extends State<OnboardingPageView> {
               _pageController.jumpToPage(1);
             },
             backOnPressed: () {},
-            skipOnPressed: () {},
+            skipOnPressed: () {
+              _markOnboardingCompleted();
+            },
           ),
           OnboardingChildPage(
             onboardingPagePosition: OnboardingPagePosition.page2,
@@ -35,17 +58,21 @@ class _OnboardingPageViewState extends State<OnboardingPageView> {
             backOnPressed: () {
               _pageController.jumpToPage(0);
             },
-            skipOnPressed: () {},
+            skipOnPressed: () {
+              _markOnboardingCompleted();
+            },
           ),
           OnboardingChildPage(
             onboardingPagePosition: OnboardingPagePosition.page3,
             nextOnPressed: () {
-              print("Di den man hinh welcome");
+              _markOnboardingCompleted();
             },
             backOnPressed: () {
               _pageController.jumpToPage(1);
             },
-            skipOnPressed: () {},
+            skipOnPressed: () {
+              _markOnboardingCompleted();
+            },
           ),
         ],
       ),

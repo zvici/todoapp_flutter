@@ -1,32 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WelcomePage extends StatelessWidget {
-  const WelcomePage({super.key});
+  final bool isFirstTimeInstallApp;
+
+  const WelcomePage({super.key, required this.isFirstTimeInstallApp});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF121212),
+      appBar: AppBar(
+        backgroundColor: Color(0xFF121212),
+        elevation: 0,
+        leading:
+            isFirstTimeInstallApp
+                ? IconButton(
+                  icon: Icon(Icons.arrow_back_ios),
+                  onPressed: () {
+                    if (Navigator.canPop(context)) {
+                      Navigator.pop(context);
+                    }
+                  },
+                  color: Colors.white,
+                )
+                : null,
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildButtonBack(),
-            _buildTitleAndDescription(),
-            _buildControlButton(),
-          ],
+          children: [_buildTitleAndDescription(), _buildControlButton()],
         ),
-      ),
-    );
-  }
-
-  Widget _buildButtonBack() {
-    return Container(
-      margin: EdgeInsets.only(left: 10),
-      child: IconButton(
-        icon: Icon(Icons.arrow_back_ios),
-        onPressed: () {},
-        color: Colors.white,
       ),
     );
   }
